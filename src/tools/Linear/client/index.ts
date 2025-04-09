@@ -7,6 +7,6 @@ export const linearClient = new LinearClient({
 
 export const linearAxiosClient = axios.create({
   headers: {
-    Authorization: `Bearer ${process.env.LINEAR_ACCESS_TOKEN}`,
+    Authorization: process.env.LINEAR_ACCESS_TOKEN,
   },
 });

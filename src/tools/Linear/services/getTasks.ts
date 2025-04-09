@@ -54,7 +54,6 @@ export const searchTasks = async (options: SearchOptions = {}) => {
       const state = await issue.state;
       const assignee = await issue.assignee;
 
-      // Download all images from the issue description
       const images = await downloadAllImages(issue.description || "");
 
       return {
@@ -66,11 +65,6 @@ export const searchTasks = async (options: SearchOptions = {}) => {
         createdAt: issue.createdAt,
         url: issue.url,
         images,
-        image: images.length > 0
-          ? await imageContent({
-              path: images[0].path,
-            })
-          : undefined,
       };
     })
   );
