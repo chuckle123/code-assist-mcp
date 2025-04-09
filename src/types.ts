@@ -1,29 +1,9 @@
-import { Issue, Team } from '@linear/sdk';
+import { ToolParameters } from "fastmcp";
 
-export interface IssuePayload {
-  id: string;
-  identifier: string;
-  title: string;
-  url: string;
-  teamId: string;
-  _team?: Team;
-}
-
-export interface IssueCreateResponse {
-  success: boolean;
-  issue: IssuePayload;
-}
-
-export interface ProjectCreateResponse {
-  success: boolean;
-  project: {
-    id: string;
-    name: string;
-    url: string;
-  };
-}
-
-export interface IssueUpdateResponse {
-  success: boolean;
-  issues: IssuePayload[];
-}
+export type Tool<A = ToolParameters, R = ToolParameters> = {
+  name: string;
+  description?: string;
+  argsSchema?: A;
+  resSchema?: R;
+  execute: (args: A) => Promise<R>;
+};
